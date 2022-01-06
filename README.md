@@ -1,2 +1,1 @@
-# learnNestJS
-学习时间nestjs
+学习实践 nestjs，3 月 31 号之前在此仓库完成一个至少 3 个接口的服务
