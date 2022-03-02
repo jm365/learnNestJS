@@ -19,13 +19,15 @@ async function bootstrap() {
   app.use(cookieParser('this signed cookies'));
 
   //配置session的中间件
-  app.use(session({ 
-    secret: 'keyboard cat',
-    resave:true, 
-    saveUninitialized:true, 
-    cookie: { maxAge: 219000,httpOnly:true },
-    rolling:true 
-  }));
+  app.use(
+    session({
+      secret: 'keyboard cat',
+      resave: true,
+      saveUninitialized: true,
+      cookie: { maxAge: 219000, httpOnly: true },
+      rolling: true,
+    }),
+  );
 
   await app.listen(3000);
 }

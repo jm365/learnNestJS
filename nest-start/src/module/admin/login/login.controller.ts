@@ -1,9 +1,21 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render, Request, Response } from '@nestjs/common';
+import { ToolsService } from '../../../service/tools/tools.service';
 
-@Controller('login')
+@Controller('admin/login')
 export class LoginController {
-    @Get()
-    index() {
-        return "登录页面"
-    }
+  constructor(private toolsService: ToolsService) {}
+
+  @Get('index')
+  @Render('admin/login')
+  index() {
+    return {};
+  }
+
+  @Get('code')
+  getCode(@Request() req, @Response() res) {
+    const svgCaptcha = this.toolsService.getCaptcha();
+    req.session.code = svgCaptcha.text;
+    res.type('svg');
+    res.send(svgCaptcha.data);
+  }
 }
